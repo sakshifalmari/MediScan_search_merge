@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediInfo - Medicine Information System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="navbar-container">
+                <div class="navbar-logo">
+                    <span class="logo-icon">💊</span>
+                    <span>MediInfo</span>
+                </div>
+                <div class="navbar-menu" id="navbarMenu">
+                    <a href="#/" class="nav-link">Home</a>
+                    <a href="#/dashboard" class="nav-link" id="dashboardLink" style="display: none;">Dashboard</a>
+                    <div id="authButtons" class="auth-buttons">
+                        <a href="#/login" class="btn btn-secondary">Login</a>
+                        <a href="#/signup" class="btn btn-primary">Sign Up</a>
+                    </div>
+                    <div id="userMenu" class="user-menu" style="display: none;">
+                        <button class="btn btn-secondary" id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Smart Medicine Information System</h1>
+                    <p>Scan QR codes, upload prescriptions, and get instant medicine details</p>
+                    <div class="hero-buttons">
+                        <a href="#/login" class="btn btn-primary btn-lg">Get Started</a>
+                        <a href="#about" class="btn btn-outline btn-lg">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="capsule3.png" alt="Medicine App Illustration" class="hero-graphic-img">
+                </div>
+            </section>
+
+            <section id="about" class="features">
+                <h2>Why MediInfo?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">📸</div>
+                        <h3>QR Code Scanner</h3>
+                        <p>Quickly scan medicine barcodes to access detailed information instantly</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📄</div>
+                        <h3>Prescription Upload</h3>
+                        <p>Upload prescription images and extract medicine information automatically</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Medicine Details</h3>
+                        <p>Get comprehensive information about dosage, side effects, and warnings</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚠️</div>
+                        <h3>Interaction Checker</h3>
+                        <p>Check for potential drug interactions between multiple medicines</p>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="footer">
+                <p>&copy; 2024 MediInfo. Your trusted medicine information companion.</p>
+            </footer>
+        </div>
+
+        <!-- Login Page -->
+        <div id="loginPage" class="page">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h1>Welcome Back</h1>
+                    <p class="auth-subtitle">Sign in to your account</p>
+                    
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">Email Address</label>
+                            <input type="email" id="loginEmail" name="email" required placeholder="you@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" name="password" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                    </form>
+
+                    <p class="auth-footer">
+                        Don't have an account? <a href="#/signup">Sign up here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Signup Page -->
+        <div id="signupPage" class="page">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h1>Create Account</h1>
+                    <p class="auth-subtitle">Join MediInfo today</p>
+                    
+                    <form id="signupForm">
+                        <div class="form-group">
+                            <label for="signupName">Full Name</label>
+                            <input type="text" id="signupName" name="name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email Address</label>
+                            <input type="email" id="signupEmail" name="email" required placeholder="you@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPassword">Password</label>
+                            <input type="password" id="signupPassword" name="password" required placeholder="••••••••">
+                        </div>
+                        <div class="form-group">
+                            <label for="signupConfirm">Confirm Password</label>
+                            <input type="password" id="signupConfirm" name="confirm" required placeholder="••••••••">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+                    </form>
+
+                    <p class="auth-footer">
+                        Already have an account? <a href="#/login">Sign in here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Page -->
+        <div id="dashboardPage" class="page">
+            <div class="dashboard-container">
+                <h1>Dashboard</h1>
+                <p class="welcome-text">Welcome back, <span id="userNameDisplay">User</span>!</p>
+
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <div class="card-icon">📸</div>
+                        <h3>Scan QR Code</h3>
+                        <p>Scan medicine barcodes and get instant information</p>
+                        <a href="#/scanner" class="btn btn-primary">Start Scanning</a>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-icon">📄</div>
+                        <h3>Upload Prescription</h3>
+                        <p>Upload a prescription image to extract medicine details</p>
+                        <a href="#/prescription" class="btn btn-primary">Upload Now</a>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-icon">🔍</div>
+                        <h3>Search Medicines</h3>
+                        <p>Search our database for any medicine</p>
+                        <a href="#/search" class="btn btn-primary">Search</a>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <div class="card-icon">📋</div>
+                        <h3>Your History</h3>
+                        <p>View your previously searched medicines</p>
+                        <a href="#/history" class="btn btn-primary">View History</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- QR Scanner Page -->
+        <div id="scannerPage" class="page">
+            <div class="scanner-container">
+                <h1>QR Code Scanner</h1>
+                <p class="subtitle">Point your camera at a medicine barcode or QR code</p>
+
+                <div class="scanner-wrapper">
+                    <video id="qrVideo" class="qr-video"></video>
+                    <canvas id="qrCanvas" style="display: none;"></canvas>
+                    <div class="scanner-overlay">
+                        <div class="scanner-box"></div>
+                    </div>
+                </div>
+
+                <div class="scanner-controls">
+                    <button id="startScanBtn" class="btn btn-primary">Start Camera</button>
+                    <button id="stopScanBtn" class="btn btn-secondary" style="display: none;">Stop Camera</button>
+                </div>
+
+                <div id="scanResult" class="scan-result" style="display: none;">
+                    <h2>Medicine Found</h2>
+                    <div id="scanResultContent"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prescription Upload Page -->
+        <div id="prescriptionPage" class="page">
+            <div class="upload-container">
+                <h1>Upload Prescription</h1>
+                <p class="subtitle">Upload a prescription image to extract medicine information</p>
+
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📤</div>
+                    <p>Drag and drop your prescription image here</p>
+                    <p class="upload-hint">or click to select a file</p>
+                    <input type="file" id="prescriptionInput" accept="image/*" style="display: none;">
+                </div>
+
+                <div id="uploadProgress" style="display: none;">
+                    <p>Processing prescription...</p>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div id="extractedMedicines" style="display: none;">
+                    <h2>Extracted Medicines</h2>
+                    <div id="medicinesList"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Page -->
+        <div id="searchPage" class="page">
+            <div class="search-container">
+                <h1>Search Medicines</h1>
+                
+                <div class="search-box">
+                    <input type="text" id="medicineSearch" placeholder="Search by medicine name, brand, or disease..." autofocus>
+                </div>
+
+                <div id="searchResults" class="search-results"></div>
+            </div>
+        </div>
+
+        <!-- History Page -->
+        <div id="historyPage" class="page">
+            <div class="history-container">
+                <h1>Search History</h1>
+                
+                <div id="historyList" class="history-list"></div>
+                
+                <div id="emptyHistory" class="empty-state">
+                    <p>No search history yet. Start exploring medicines!</p>
+                    <a href="#/search" class="btn btn-primary">Search Now</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Medicine Details Modal -->
+        <div id="medicineModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div id="medicineDetailsContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="medicines.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
