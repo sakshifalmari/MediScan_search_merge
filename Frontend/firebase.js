@@ -5,7 +5,7 @@ from https://firebase.google.com/docs/web/setup#available-libraries;
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBN9b24XxhFLVJBD0G7b7rs3PFWp5Ik_Hs",
+ apiKey: "YOUR_API_KEY"
   authDomain: "mediscan-1f060.firebaseapp.com",
   projectId: "mediscan-1f060",
   storageBucket: "mediscan-1f060.firebasestorage.app",
@@ -22,7 +22,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBN9b24XxhFLVJBD0G7b7rs3PFWp5Ik_Hs",
+ apiKey: "YOUR_API_KEY"
   authDomain: "mediscan-1f060.firebaseapp.com",
   projectId: "mediscan-1f060",
   storageBucket: "mediscan-1f060.firebasestorage.app",
